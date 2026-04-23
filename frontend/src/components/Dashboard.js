@@ -14,7 +14,7 @@ export default function Dashboard() {
   const headers = { Authorization: `Bearer ${token}` };
 
   const fetchItems = async () => {
-    const res = await axios.get('http://localhost:5000/api/items', { headers });
+    const res = await axios.get('https://lost-found-backend-1be9.onrender.co/api/items', { headers });
     setItems(res.data);
   };
 
@@ -22,7 +22,7 @@ export default function Dashboard() {
 
   const handleSearch = async () => {
     const res = await axios.get(
-      `http://localhost:5000/api/items/search?name=${search}`, { headers }
+      `https://lost-found-backend-1be9.onrender.com/api/items/search?name=${search}`, { headers }
     );
     setItems(res.data);
   };
@@ -30,10 +30,10 @@ export default function Dashboard() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (editId) {
-      await axios.put(`http://localhost:5000/api/items/${editId}`, form, { headers });
+      await axios.put(`https://lost-found-backend-1be9.onrender.com/api/items/${editId}`, form, { headers });
       setEditId(null);
     } else {
-      await axios.post('http://localhost:5000/api/items', form, { headers });
+      await axios.post('https://lost-found-backend-1be9.onrender.com/api/items', form, { headers });
     }
     setForm({ itemName:'', description:'', type:'Lost', location:'', date:'', contactInfo:'' });
     fetchItems();
@@ -41,7 +41,7 @@ export default function Dashboard() {
 
   const handleDelete = async (id) => {
     if (window.confirm('Delete this item?')) {
-      await axios.delete(`http://localhost:5000/api/items/${id}`, { headers });
+      await axios.delete(`https://lost-found-backend-1be9.onrender.com/api/items/${id}`, { headers });
       fetchItems();
     }
   };
